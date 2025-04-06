@@ -1,0 +1,32 @@
+package org.kevinkib.cards.domain;
+
+import org.kevinkib.cards.domain.Hand;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public final class HandBuilder {
+    private List<Card> cards;
+
+    private HandBuilder() {
+    }
+
+    public static HandBuilder aHand() {
+        return new HandBuilder();
+    }
+
+    public HandBuilder withCards(List<Card> cards) {
+        this.cards = cards;
+        return this;
+    }
+
+    public HandBuilder withNoCards() {
+        this.cards = Collections.emptyList();
+        return this;
+    }
+
+    public Hand build() {
+        return new Hand(cards);
+    }
+}

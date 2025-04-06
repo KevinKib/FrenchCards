@@ -1,0 +1,89 @@
+package org.kevinkib.cards.domain;
+
+import java.util.Objects;
+
+public class Card {
+
+    private final Rank rank;
+    private final Suit suit;
+    private CardState state;
+
+    public Card(Rank rank, Suit suit) {
+        this(rank, suit, CardState.SHOWN);
+    }
+
+    public Card(Rank rank, Suit suit, CardState state) {
+        this.rank = rank;
+        this.suit = suit;
+        this.state = state;
+    }
+
+    public void putInHand() {
+        state = CardState.SHOWN_IN_HAND;
+    }
+
+    public void showInPile() {
+        state = CardState.SHOWN;
+    }
+
+    public void hideInPile() {
+        state = CardState.HIDDEN;
+    }
+
+    public void putInHandAndShowToOtherPlayers() {
+        state = CardState.IN_HAND_SHOWN_TO_OTHER_PLAYERS;
+    }
+
+    public void hideInHand() {
+        state = CardState.HIDDEN_IN_HAND;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public CardState getState() {
+        return state;
+    }
+
+    public boolean isShown() {
+        return state.isShownToHoldingPlayer();
+    }
+
+    public boolean isHidden() {
+        return state.isHidden();
+    }
+
+    public boolean isInHand() {
+        return state.isInHand();
+    }
+
+    public boolean isInPile() {
+        return state.isInPile();
+    }
+
+    public boolean isShownToHoldingPlayer() {
+        return state.isShownToHoldingPlayer();
+    }
+
+    public boolean isShownToOtherPlayers() {
+        return state.isShownToOtherPlayers();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return Objects.equals(rank, card.rank) && Objects.equals(suit, card.suit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, suit);
+    }
+}
