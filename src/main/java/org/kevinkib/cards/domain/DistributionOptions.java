@@ -1,7 +1,9 @@
 package org.kevinkib.cards.domain;
 
-public class DistributionOptions {
+public record DistributionOptions(boolean isIdenticalCardsNumberForced) {
 
-    private boolean forceIdenticalCardsNumber;
+    public static DistributionOptions DEFAULT = new DistributionOptions(false);
+
+    public static DistributionOptions IDENTICAL_CARDS_NUMBER = new DistributionOptions(true);
 
 }

@@ -30,6 +30,18 @@ public class Deck {
     }
 
     public List<Hand> distributeAll(Integer nbPlayers) {
+        try {
+            return distributeAll(nbPlayers, DistributionOptions.DEFAULT);
+        } catch (UnevenNumberOfCardsPerPlayerException e) {
+            throw new IllegalStateException(SHOULD_ALWAYS_DISTRIBUTE);
+        }
+    }
+
+    public List<Hand> distributeAll(Integer nbPlayers, DistributionOptions options) throws UnevenNumberOfCardsPerPlayerException {
+        if (options.isIdenticalCardsNumberForced()) {
+            return distributeAllEvenly(nbPlayers);
+        }
+
         List<Hand> hands = createHands(nbPlayers);
         int deckSize = getSize();
 
@@ -43,7 +55,7 @@ public class Deck {
         return hands;
     }
 
-    public List<Hand> distributeAllEvenly(Integer nbPlayers) throws UnevenNumberOfCardsPerPlayerException {
+    private List<Hand> distributeAllEvenly(Integer nbPlayers) throws UnevenNumberOfCardsPerPlayerException {
         double cardsPerPlayer = (double) getSize() / nbPlayers;
         boolean isCardDistributionUneven = cardsPerPlayer != Math.floor(cardsPerPlayer);
 
@@ -56,7 +68,7 @@ public class Deck {
         try {
             return distribute(nbPlayers, nbCardsPerPlayer);
         } catch (CannotDistributeDeckException e) {
-            throw new IllegalStateException("Deck.distributeAll should always be able to distribute decks after its checks");
+            throw new IllegalStateException(SHOULD_ALWAYS_DISTRIBUTE);
         }
     }
 
@@ -79,4 +91,6 @@ public class Deck {
         }
         return hands;
     }
+
+    private static String SHOULD_ALWAYS_DISTRIBUTE = "Deck should always be able to distribute decks after its checks";
 }

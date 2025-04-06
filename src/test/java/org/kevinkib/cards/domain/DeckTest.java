@@ -119,7 +119,7 @@ class DeckTest {
         int expectedNbCardsPerPlayer = deck.getSize() / nbPlayers;
 
         assertDoesNotThrow(() -> {
-            List<Hand> hands = deck.distributeAllEvenly(nbPlayers);
+            List<Hand> hands = deck.distributeAll(nbPlayers, DistributionOptions.IDENTICAL_CARDS_NUMBER);
 
             for (int i = 0; i < nbPlayers; ++i) {
                 Hand hand = hands.get(i);
@@ -137,7 +137,7 @@ class DeckTest {
         int nbPlayers = 3;
 
         assertThrows(UnevenNumberOfCardsPerPlayerException.class, () -> {
-            deck.distributeAllEvenly(nbPlayers);
+            deck.distributeAll(nbPlayers, DistributionOptions.IDENTICAL_CARDS_NUMBER);
         });
     }
 

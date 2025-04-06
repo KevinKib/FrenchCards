@@ -2,7 +2,7 @@ package org.kevinkib.cards.domain;
 
 import static org.kevinkib.cards.domain.CardPosition.*;
 
-public enum CardPileState {
+public enum CardPileState implements CardState {
 
     HIDDEN(PILE, false),
     SHOWN(PILE, true);
@@ -13,14 +13,6 @@ public enum CardPileState {
     CardPileState(CardPosition position, boolean shown) {
         this.position = position;
         this.shown = shown;
-    }
-
-    public boolean isShownToHoldingPlayer() {
-        return shown;
-    }
-
-    public boolean isShownToOtherPlayers() {
-        return shown;
     }
 
     public boolean isInHand() {
@@ -36,6 +28,14 @@ public enum CardPileState {
     }
 
     public boolean isShown() {
+        return shown;
+    }
+
+    public boolean isShownToHoldingPlayer() {
+        return shown;
+    }
+
+    public boolean isShownToOtherPlayers() {
         return shown;
     }
 }

@@ -9,7 +9,7 @@ public class Card {
     private CardState state;
 
     public Card(Rank rank, Suit suit) {
-        this(rank, suit, CardState.SHOWN);
+        this(rank, suit, CardHandState.SHOWN_IN_HAND);
     }
 
     public Card(Rank rank, Suit suit, CardState state) {
@@ -19,23 +19,23 @@ public class Card {
     }
 
     public void putInHand() {
-        state = CardState.SHOWN_IN_HAND;
+        state = CardHandState.SHOWN_IN_HAND;
     }
 
     public void showInPile() {
-        state = CardState.SHOWN;
+        state = CardPileState.SHOWN;
     }
 
     public void hideInPile() {
-        state = CardState.HIDDEN;
+        state = CardPileState.HIDDEN;
     }
 
     public void putInHandAndShowToOtherPlayers() {
-        state = CardState.IN_HAND_SHOWN_TO_OTHER_PLAYERS;
+        state = CardHandState.IN_HAND_SHOWN_TO_OTHER_PLAYERS;
     }
 
     public void hideInHand() {
-        state = CardState.HIDDEN_IN_HAND;
+        state = CardHandState.HIDDEN_IN_HAND;
     }
 
     public Rank getRank() {

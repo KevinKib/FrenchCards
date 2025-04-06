@@ -1,9 +1,13 @@
 package org.kevinkib.cards.domain;
 
-public interface DeckFactory {
+public abstract class DeckFactory {
 
-    public Deck generate(DeckType deckType);
+    public Deck generate(DeckType deckType) {
+        return generate(deckType, DeckCreationOptions.DEFAULT.getCardState());
+    }
 
-    public boolean canHandle(DeckType deckType);
+    public abstract Deck generate(DeckType deckType, CardState cardState);
+
+    public abstract boolean canHandle(DeckType deckType);
 
 }
