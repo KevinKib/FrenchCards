@@ -1,6 +1,7 @@
 package org.kevinkib.cards.domain;
 
 import org.junit.jupiter.api.Test;
+import org.kevinkib.cards.testhelpers.CardBuilder;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.junit.MatcherAssert.assertThat;

@@ -26,7 +26,15 @@ public class Pile {
         return cards.get(index);
     }
 
+    public Card getCard(int index) {
+        return seeCardByIndex(index);
+    }
+
     public Integer getSize() {
         return cards.size();
+    }
+
+    public boolean isEmpty() {
+        return cards.isEmpty();
     }
 }

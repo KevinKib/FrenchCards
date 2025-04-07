@@ -1,8 +1,8 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.testhelpers;
 
+import org.kevinkib.cards.domain.Card;
 import org.kevinkib.cards.domain.Hand;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

@@ -1,4 +1,7 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.testhelpers;
+
+import org.kevinkib.cards.domain.Card;
+import org.kevinkib.cards.domain.Deck;
 
 import java.util.LinkedList;
 import java.util.Random;

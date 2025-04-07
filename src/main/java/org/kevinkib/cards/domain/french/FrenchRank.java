@@ -3,7 +3,6 @@ package org.kevinkib.cards.domain.french;
 import org.kevinkib.cards.domain.Rank;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +35,13 @@ public enum FrenchRank implements Rank {
         return Arrays.stream(FrenchRank.values())
                 .filter(rank -> rank != FrenchRank.JOKER)
                 .collect(Collectors.toList());
+    }
+
+    public Integer sum(FrenchRank rank) {
+        if (rank == null || value == null || rank.value == null) {
+            return null;
+        }
+        return value + rank.value;
     }
 
     @Override

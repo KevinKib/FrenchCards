@@ -35,6 +35,10 @@ public class Hand {
         return cards.remove(0);
     }
 
+    public Card getCardOnTop() {
+        return cards.get(0);
+    }
+
     public List<Card> getCards() {
         return new ArrayList<>(cards);
     }
