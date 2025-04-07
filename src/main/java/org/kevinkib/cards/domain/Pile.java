@@ -1,6 +1,7 @@
 package org.kevinkib.cards.domain;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Pile {
 
@@ -11,7 +12,29 @@ public class Pile {
     }
 
     public void add(Card card) {
+        add(card, CardPileState.SHOWN);
+    }
+
+    public void add(Card card, CardPileState state) {
+        if (state.isHidden()) {
+            card.hideInPile();
+        } else if (state.isShown()) {
+            card.showInPile();
+        }
+
         cards.add(card);
+    }
+
+    public void add(List<Card> cards) {
+        for (Card card : cards) {
+            add(card);
+        }
+    }
+
+    public void add(List<Card> cards, CardPileState state) {
+        for (Card card : cards) {
+            add(card, state);
+        }
     }
 
     public Card draw() {
