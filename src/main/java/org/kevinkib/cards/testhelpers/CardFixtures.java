@@ -17,4 +17,8 @@ public class CardFixtures {
         return cards;
     }
 
+    public static Card anyCard() {
+        return CardBuilder.aCard().build();
+    }
+
 }

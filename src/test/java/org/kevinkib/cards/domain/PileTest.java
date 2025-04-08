@@ -1,6 +1,7 @@
 package org.kevinkib.cards.domain;
 
 import org.junit.jupiter.api.Test;
+import org.kevinkib.cards.domain.french.FrenchRank;
 import org.kevinkib.cards.testhelpers.CardBuilder;
 import org.kevinkib.cards.testhelpers.CardFixtures;
 import org.kevinkib.cards.testhelpers.PileFixtures;
@@ -42,5 +43,31 @@ class PileTest {
         pile.add(cards);
 
         assertThat(pile.getSize(), is(nbCards));
+    }
+
+    @Test
+    public void givenNewCard_whenAdd_thenNewCardShouldBeAddedFirst() {
+        int nbCards = 4;
+
+        List<Card> cards = CardFixtures.createNumberOfCards(nbCards);
+        Pile pile = PileFixtures.createEmptyPile();
+
+        pile.add(cards);
+
+        Card newCard = CardBuilder.aCard().withRank(FrenchRank.ACE).build();
+        pile.add(newCard);
+
+        assertThat(pile.seeCardOnTop(), is(newCard));
+    }
+
+    @Test
+    public void givenCards_whenClearAndReturnCards_thenShouldBeEmpty() {
+        int anyNumberOfCards = 5;
+        Pile pile = PileFixtures.createPileWithNumberOfCards(anyNumberOfCards);
+
+        List<Card> cards = pile.clearAndReturnCards();
+
+        assertThat(cards.size(), is(anyNumberOfCards));
+        assertThat(pile.isEmpty(), is(true));
     }
 }

@@ -19,6 +19,10 @@ public class Hand {
         cards.add(card);
     }
 
+    public void add(List<Card> cards) {
+        this.cards.addAll(cards);
+    }
+
     public void play(Card card) throws CannotPlayNonPossessedCardException {
         if (!possesses(card)) {
             throw new CannotPlayNonPossessedCardException();
