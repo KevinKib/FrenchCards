@@ -57,4 +57,12 @@ public enum FrenchRank implements Rank {
         return Integer.compare(this.getStrength(), o.getStrength());
     }
 
+    @Override
+    public String toString() {
+        if (strength <= 10) {
+            return strength.toString();
+        }
+
+        return name();
+    }
 }

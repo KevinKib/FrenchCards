@@ -10,10 +10,10 @@ import static org.kevinkib.cards.domain.french.Color.BLACK;
 
 public enum FrenchSuit implements Suit {
 
-    HEARTS(RED, '♥', false),
-    DIAMONDS(RED, '♦', false),
-    CLUBS(BLACK, '♣', false),
-    SPADES(BLACK, '♠', false),
+    HEART(RED, '♥', false),
+    DIAMOND(RED, '♦', false),
+    CLUB(BLACK, '♣', false),
+    SPADE(BLACK, '♠', false),
     RED_JOKER(RED, 'J', true),
     BLACK_JOKER(BLACK, 'J', true);
 
@@ -28,7 +28,7 @@ public enum FrenchSuit implements Suit {
     }
 
     public static List<FrenchSuit> getSuits() {
-        return Arrays.asList(HEARTS, DIAMONDS, CLUBS, SPADES);
+        return Arrays.asList(HEART, DIAMOND, CLUB, SPADE);
     }
 
     public Color getColor() {
@@ -45,6 +45,6 @@ public enum FrenchSuit implements Suit {
 
     @Override
     public String toString() {
-        return symbol.toString();
+        return name();
     }
 }

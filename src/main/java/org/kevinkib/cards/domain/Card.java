@@ -74,6 +74,14 @@ public class Card {
         return state.isShownToOtherPlayers();
     }
 
+    public boolean isSameRankAs(Card card) {
+        return Objects.equals(rank, card.rank);
+    }
+
+    public boolean isSameSuitAs(Card card) {
+        return Objects.equals(suit, card.suit);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

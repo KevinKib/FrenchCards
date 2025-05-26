@@ -23,7 +23,7 @@ class DeckTest {
     public void canDraw() {
         Card expectedCard = CardBuilder.aCard()
                 .withRank(FrenchRank.ACE)
-                .withSuit(FrenchSuit.DIAMONDS)
+                .withSuit(FrenchSuit.DIAMOND)
                 .build();
 
         deck = DeckBuilder.aDeck()
