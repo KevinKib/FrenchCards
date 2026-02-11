@@ -38,4 +38,8 @@ public final class DeckBuilder {
     public Deck build() {
         return new Deck(cards, random);
     }
+
+    public Deck buildWithoutRandom() {
+        return new Deck(cards);
+    }
 }

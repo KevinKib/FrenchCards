@@ -6,8 +6,12 @@ public class Deck {
 
     private final LinkedList<Card> cards;
 
-    public Deck(List<Card> cards, Random seed) {
+    public Deck(List<Card> cards) {
         this.cards = new LinkedList<>(cards);
+    }
+
+    public Deck(List<Card> cards, Random seed) {
+        this(cards);
         shuffle(seed);
     }
 
