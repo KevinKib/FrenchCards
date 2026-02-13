@@ -37,6 +37,15 @@ public enum FrenchRank implements Rank {
                 .collect(Collectors.toList());
     }
 
+    public static FrenchRank fromStrength(Integer strengthValue) {
+        for (FrenchRank rank : FrenchRank.values()) {
+            if (rank.getStrength().equals(strengthValue)) {
+                return rank;
+            }
+        }
+        throw new IllegalArgumentException("Invalid strength : "+strengthValue);
+    }
+
     public Integer sum(FrenchRank rank) {
         if (rank == null || value == null || rank.value == null) {
             return null;

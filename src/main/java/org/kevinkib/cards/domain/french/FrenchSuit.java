@@ -31,6 +31,15 @@ public enum FrenchSuit implements Suit {
         return Arrays.asList(HEART, DIAMOND, CLUB, SPADE);
     }
 
+    public static FrenchSuit from(String suitName) {
+        for (FrenchSuit suit : FrenchSuit.values()) {
+            if (suit.name().equals(suitName)) {
+                return suit;
+            }
+        }
+        throw new IllegalArgumentException("Invalid suit : "+suitName);
+    }
+
     public Color getColor() {
         return color;
     }

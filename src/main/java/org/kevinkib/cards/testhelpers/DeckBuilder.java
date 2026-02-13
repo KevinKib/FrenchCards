@@ -3,6 +3,7 @@ package org.kevinkib.cards.testhelpers;
 import org.kevinkib.cards.domain.Card;
 import org.kevinkib.cards.domain.Deck;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -15,6 +16,11 @@ public final class DeckBuilder {
 
     public static DeckBuilder aDeck() {
         return new DeckBuilder();
+    }
+
+    public DeckBuilder withCards(Card... cards) {
+        this.cards = new LinkedList<>(Arrays.asList(cards));
+        return this;
     }
 
     public DeckBuilder withCards(LinkedList<Card> cards) {
