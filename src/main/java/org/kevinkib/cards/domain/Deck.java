@@ -96,5 +96,9 @@ public class Deck {
         return hands;
     }
 
-    private static String SHOULD_ALWAYS_DISTRIBUTE = "Deck should always be able to distribute decks after its checks";
+    public void remove(Card card) {
+        cards.remove(card);
+    }
+
+    private final static String SHOULD_ALWAYS_DISTRIBUTE = "Deck should always be able to distribute decks after its checks";
 }
