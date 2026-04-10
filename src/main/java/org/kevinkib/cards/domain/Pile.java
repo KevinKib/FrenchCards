@@ -22,7 +22,7 @@ public class Pile {
         updateCardState(card, state);
         cards.addFirst(card);
 
-        onCardAdded();
+        onCardAdded(card, PilePosition.TOP);
     }
 
     public void add(List<Card> cards) {
@@ -45,7 +45,7 @@ public class Pile {
         updateCardState(card, state);
         cards.addLast(card);
 
-        onCardAdded();
+        onCardAdded(card, PilePosition.BOTTOM);
     }
 
     public void addBelow(List<Card> cards) {
@@ -82,9 +82,9 @@ public class Pile {
         // TODO: test subscription
     }
 
-    public void onCardAdded() {
+    public void onCardAdded(Card addedCard, PilePosition pilePosition) {
         for (PileSubscriber subscriber : subscribers) {
-            subscriber.onCardAdded(this);
+            subscriber.onCardAdded(this, addedCard, pilePosition);
         }
     }
 
