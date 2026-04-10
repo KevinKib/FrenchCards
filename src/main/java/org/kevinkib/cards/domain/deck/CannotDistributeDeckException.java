@@ -1,4 +1,4 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.deck;
 
 public class CannotDistributeDeckException extends Exception {
 

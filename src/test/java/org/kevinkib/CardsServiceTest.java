@@ -1,10 +1,10 @@
 package org.kevinkib;
 
 import org.junit.jupiter.api.Test;
-import org.kevinkib.cards.CardsController;
-import org.kevinkib.cards.domain.Deck;
-import org.kevinkib.cards.domain.DeckType;
-import org.kevinkib.cards.domain.UnhandledDeckTypeException;
+import org.kevinkib.cards.CardsService;
+import org.kevinkib.cards.domain.deck.Deck;
+import org.kevinkib.cards.domain.deck.DeckType;
+import org.kevinkib.cards.domain.deck.UnhandledDeckTypeException;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class CardsControllerTest {
+public class CardsServiceTest {
 
-    private final CardsController service = new CardsController();
+    private final CardsService service = new CardsService();
 
     @Test
     public void givenNullDeckType_whenCreateDeck_thenThrowUnhandledDeckTypeException() {

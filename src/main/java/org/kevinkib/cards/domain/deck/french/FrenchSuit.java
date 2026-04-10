@@ -1,12 +1,12 @@
-package org.kevinkib.cards.domain.french;
+package org.kevinkib.cards.domain.deck.french;
 
 import org.kevinkib.cards.domain.Suit;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.kevinkib.cards.domain.french.Color.RED;
-import static org.kevinkib.cards.domain.french.Color.BLACK;
+import static org.kevinkib.cards.domain.deck.french.Color.RED;
+import static org.kevinkib.cards.domain.deck.french.Color.BLACK;
 
 public enum FrenchSuit implements Suit {
 

@@ -1,12 +1,12 @@
 package org.kevinkib.cards;
 
-import org.kevinkib.cards.domain.*;
-import org.kevinkib.cards.domain.french.FrenchDeckFactory;
+import org.kevinkib.cards.domain.deck.*;
+import org.kevinkib.cards.domain.deck.french.FrenchDeckFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CardsController {
+public class CardsService {
 
     public Deck createDeck(DeckType type) {
         return createDeck(type, DeckCreationOptions.DEFAULT);

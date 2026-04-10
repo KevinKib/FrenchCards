@@ -1,4 +1,6 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.deck;
+
+import org.kevinkib.cards.domain.CardState;
 
 public abstract class DeckFactory {
 

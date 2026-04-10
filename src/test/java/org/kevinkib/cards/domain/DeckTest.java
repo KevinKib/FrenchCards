@@ -1,8 +1,13 @@
 package org.kevinkib.cards.domain;
 
 import org.junit.jupiter.api.Test;
-import org.kevinkib.cards.domain.french.FrenchRank;
-import org.kevinkib.cards.domain.french.FrenchSuit;
+import org.kevinkib.cards.domain.deck.CannotDistributeDeckException;
+import org.kevinkib.cards.domain.deck.Deck;
+import org.kevinkib.cards.domain.deck.DistributionOptions;
+import org.kevinkib.cards.domain.deck.UnevenNumberOfCardsPerPlayerException;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
+import org.kevinkib.cards.domain.deck.french.FrenchSuit;
+import org.kevinkib.cards.domain.hand.Hand;
 import org.kevinkib.cards.testhelpers.CardBuilder;
 import org.kevinkib.cards.testhelpers.DeckBuilder;
 

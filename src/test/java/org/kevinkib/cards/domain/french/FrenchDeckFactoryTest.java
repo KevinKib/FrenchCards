@@ -1,8 +1,9 @@
 package org.kevinkib.cards.domain.french;
 
 import org.junit.jupiter.api.Test;
-import org.kevinkib.cards.domain.Deck;
-import org.kevinkib.cards.domain.DeckType;
+import org.kevinkib.cards.domain.deck.Deck;
+import org.kevinkib.cards.domain.deck.DeckType;
+import org.kevinkib.cards.domain.deck.french.FrenchDeckFactory;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.junit.MatcherAssert.assertThat;

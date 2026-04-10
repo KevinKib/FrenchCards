@@ -1,6 +1,9 @@
-package org.kevinkib.cards.domain.french;
+package org.kevinkib.cards.domain.deck.french;
 
 import org.kevinkib.cards.domain.*;
+import org.kevinkib.cards.domain.deck.Deck;
+import org.kevinkib.cards.domain.deck.DeckFactory;
+import org.kevinkib.cards.domain.deck.DeckType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

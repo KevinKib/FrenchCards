@@ -1,4 +1,6 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.hand;
+
+import org.kevinkib.cards.domain.Card;
 
 import java.util.ArrayList;
 import java.util.List;

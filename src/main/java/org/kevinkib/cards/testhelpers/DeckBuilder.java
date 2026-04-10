@@ -1,7 +1,7 @@
 package org.kevinkib.cards.testhelpers;
 
 import org.kevinkib.cards.domain.Card;
-import org.kevinkib.cards.domain.Deck;
+import org.kevinkib.cards.domain.deck.Deck;
 
 import java.util.Arrays;
 import java.util.LinkedList;

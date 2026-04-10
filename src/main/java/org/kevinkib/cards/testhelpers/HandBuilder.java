@@ -1,7 +1,7 @@
 package org.kevinkib.cards.testhelpers;
 
 import org.kevinkib.cards.domain.Card;
-import org.kevinkib.cards.domain.Hand;
+import org.kevinkib.cards.domain.hand.Hand;
 
 import java.util.Arrays;
 import java.util.Collections;

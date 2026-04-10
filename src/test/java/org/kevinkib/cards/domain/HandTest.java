@@ -1,7 +1,10 @@
 package org.kevinkib.cards.domain;
 
 import org.junit.jupiter.api.Test;
-import org.kevinkib.cards.domain.french.FrenchRank;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
+import org.kevinkib.cards.domain.hand.CannotPlayNonPossessedCardException;
+import org.kevinkib.cards.domain.hand.Hand;
+import org.kevinkib.cards.domain.hand.NoCardsException;
 import org.kevinkib.cards.testhelpers.CardBuilder;
 import org.kevinkib.cards.testhelpers.HandBuilder;
 

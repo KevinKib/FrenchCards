@@ -2,6 +2,7 @@ package org.kevinkib.cards.domain.french;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.junit.MatcherAssert.assertThat;

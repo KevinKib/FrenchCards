@@ -1,4 +1,7 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.pile;
+
+import org.kevinkib.cards.domain.Card;
+import org.kevinkib.cards.domain.CardPileState;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

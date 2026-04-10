@@ -1,4 +1,4 @@
-package org.kevinkib.cards.domain.french;
+package org.kevinkib.cards.domain.deck.french;
 
 import org.kevinkib.cards.domain.Rank;
 

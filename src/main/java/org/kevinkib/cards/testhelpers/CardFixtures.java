@@ -4,7 +4,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.kevinkib.cards.domain.Card;
-import org.kevinkib.cards.domain.french.FrenchRank;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,7 +1,8 @@
 package org.kevinkib.cards.domain;
 
 import org.junit.jupiter.api.Test;
-import org.kevinkib.cards.domain.french.FrenchRank;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
+import org.kevinkib.cards.domain.pile.Pile;
 import org.kevinkib.cards.testhelpers.CardBuilder;
 import org.kevinkib.cards.testhelpers.CardFixtures;
 import org.kevinkib.cards.testhelpers.PileFixtures;

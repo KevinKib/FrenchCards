@@ -2,16 +2,16 @@ package org.kevinkib.cards.domain;
 
 public sealed interface CardState permits CardPileState, CardHandState {
 
-    public boolean isInHand();
+    boolean isInHand();
 
-    public boolean isInPile();
+    boolean isInPile();
 
-    public boolean isHidden();
+    boolean isHidden();
 
-    public boolean isShown();
+    boolean isShown();
 
-    public boolean isShownToHoldingPlayer();
+    boolean isShownToHoldingPlayer();
 
-    public boolean isShownToOtherPlayers();
+    boolean isShownToOtherPlayers();
 
 }

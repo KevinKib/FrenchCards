@@ -1,8 +1,8 @@
 package org.kevinkib.cards.testhelpers;
 
 import org.kevinkib.cards.domain.Card;
-import org.kevinkib.cards.domain.Pile;
-import org.kevinkib.cards.domain.french.FrenchRank;
+import org.kevinkib.cards.domain.pile.Pile;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
 
 public class PileFixtures {
 

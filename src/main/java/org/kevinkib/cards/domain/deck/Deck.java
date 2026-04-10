@@ -1,4 +1,7 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.deck;
+
+import org.kevinkib.cards.domain.*;
+import org.kevinkib.cards.domain.hand.Hand;
 
 import java.util.*;
 

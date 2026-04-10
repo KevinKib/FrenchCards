@@ -1,4 +1,4 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.hand;
 
 public class NoCardsException extends Exception {
 

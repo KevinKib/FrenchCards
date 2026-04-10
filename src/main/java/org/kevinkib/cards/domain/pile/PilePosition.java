@@ -1,4 +1,4 @@
-package org.kevinkib.cards.domain;
+package org.kevinkib.cards.domain.pile;
 
 public enum PilePosition {
 
