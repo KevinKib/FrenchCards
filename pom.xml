@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.kevinkib</groupId>
-    <artifactId>FrenchCards</artifactId>
+    <artifactId>frenchcards</artifactId>
     <version>0.1.0</version>
 
     <properties>
