@@ -25,7 +25,7 @@ public class Pile {
         updateVisibility(card, visibility);
         cards.addFirst(card);
 
-        onCardAdded(card, PilePosition.TOP);
+        notifyCardAdded(card, PilePosition.TOP);
     }
 
     public void add(List<Card> cards) {
@@ -48,7 +48,7 @@ public class Pile {
         updateVisibility(card, visibility);
         cards.addLast(card);
 
-        onCardAdded(card, PilePosition.BOTTOM);
+        notifyCardAdded(card, PilePosition.BOTTOM);
     }
 
     public void addBelow(List<Card> cards) {
@@ -66,7 +66,7 @@ public class Pile {
     public void clear() {
         cards.clear();
 
-        onClear();
+        notifyCleared();
     }
 
     public List<Card> clearAndReturnCards() {
@@ -77,21 +77,19 @@ public class Pile {
 
     public void subscribe(PileSubscriber subscriber) {
         subscribers.add(subscriber);
-        // TODO: test subscription
     }
 
     public void unsubscribe(PileSubscriber subscriber) {
         subscribers.remove(subscriber);
-        // TODO: test subscription
     }
 
-    public void onCardAdded(Card addedCard, PilePosition pilePosition) {
+    private void notifyCardAdded(Card addedCard, PilePosition pilePosition) {
         for (PileSubscriber subscriber : subscribers) {
             subscriber.onCardAdded(this, addedCard, pilePosition);
         }
     }
 
-    public void onClear() {
+    private void notifyCleared() {
         for (PileSubscriber subscriber : subscribers) {
             subscriber.onClear(this);
         }

@@ -3,10 +3,13 @@ package org.kevinkib.cards.domain;
 import org.junit.jupiter.api.Test;
 import org.kevinkib.cards.domain.deck.french.FrenchRank;
 import org.kevinkib.cards.domain.pile.Pile;
+import org.kevinkib.cards.domain.pile.PilePosition;
+import org.kevinkib.cards.domain.pile.PileSubscriber;
 import org.kevinkib.cards.testhelpers.CardBuilder;
 import org.kevinkib.cards.testhelpers.CardFixtures;
 import org.kevinkib.cards.testhelpers.PileFixtures;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
@@ -70,5 +73,69 @@ class PileTest {
 
         assertThat(cards.size(), is(anyNumberOfCards));
         assertThat(pile.isEmpty(), is(true));
+    }
+
+    @Test
+    public void givenSubscriber_whenAdd_thenNotifiedOfCardAddedOnTop() {
+        Pile pile = PileFixtures.createEmptyPile();
+        RecordingSubscriber subscriber = new RecordingSubscriber();
+        pile.subscribe(subscriber);
+
+        Card card = CardBuilder.aCard().withRank(FrenchRank.ACE).build();
+        pile.add(card);
+
+        assertThat(subscriber.added, is(List.of(card)));
+        assertThat(subscriber.positions, is(List.of(PilePosition.TOP)));
+    }
+
+    @Test
+    public void givenSubscriber_whenAddBelow_thenNotifiedAtBottom() {
+        Pile pile = PileFixtures.createEmptyPile();
+        RecordingSubscriber subscriber = new RecordingSubscriber();
+        pile.subscribe(subscriber);
+
+        pile.addBelow(CardBuilder.aCard().build());
+
+        assertThat(subscriber.positions, is(List.of(PilePosition.BOTTOM)));
+    }
+
+    @Test
+    public void givenSubscriber_whenClear_thenNotified() {
+        Pile pile = PileFixtures.createPileWithNumberOfCards(3);
+        RecordingSubscriber subscriber = new RecordingSubscriber();
+        pile.subscribe(subscriber);
+
+        pile.clear();
+
+        assertThat(subscriber.clearCount, is(1));
+    }
+
+    @Test
+    public void givenUnsubscribedSubscriber_whenAdd_thenNotNotified() {
+        Pile pile = PileFixtures.createEmptyPile();
+        RecordingSubscriber subscriber = new RecordingSubscriber();
+        pile.subscribe(subscriber);
+        pile.unsubscribe(subscriber);
+
+        pile.add(CardBuilder.aCard().build());
+
+        assertThat(subscriber.added.isEmpty(), is(true));
+    }
+
+    private static class RecordingSubscriber implements PileSubscriber {
+        final List<Card> added = new ArrayList<>();
+        final List<PilePosition> positions = new ArrayList<>();
+        int clearCount = 0;
+
+        @Override
+        public void onCardAdded(Pile pile, Card addedCard, PilePosition pilePosition) {
+            added.add(addedCard);
+            positions.add(pilePosition);
+        }
+
+        @Override
+        public void onClear(Pile pile) {
+            clearCount++;
+        }
     }
 }

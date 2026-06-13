@@ -54,6 +54,13 @@ public class Card {
         return Objects.equals(suit, card.suit);
     }
 
+    /**
+     * Cards are equal when they share the same rank and suit; visibility is
+     * intentionally ignored. By design this means two cards of the same
+     * rank/suit are indistinguishable, so games that use more than one deck
+     * cannot tell duplicate cards apart through equality. See the "Known
+     * limitations" section of the README.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
