@@ -165,6 +165,10 @@ card.toString();     // e.g. "ACE of SPADE" (handy for logging)
 
 These are intentionally left to the consuming application.
 
+## Known limitations
+
+- **Cards are equal by rank and suit only.** Two cards with the same rank and suit are considered equal (and have the same hash), regardless of visibility. This is by design and keeps the model simple, but it means games that use more than one deck cannot distinguish duplicate cards through equality — operations like `Hand.play(card)`, `Hand.possesses(card)`, and `Deck.remove(card)` act on the first matching card. If your game needs to tell identical cards apart, track identity at your own layer.
+
 ## Test helpers
 
 Test helpers under `org.kevinkib.cards.testhelpers` make writing game tests easier. They ship as a separate **test-jar** so the main artifact stays free of test dependencies — add it to your build only where you need it:
