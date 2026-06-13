@@ -6,36 +6,24 @@ public class Card {
 
     private final Rank rank;
     private final Suit suit;
-    private CardState state;
+    private Visibility visibility;
 
     public Card(Rank rank, Suit suit) {
-        this(rank, suit, CardHandState.SHOWN_IN_HAND);
+        this(rank, suit, Visibility.SHOWN);
     }
 
-    public Card(Rank rank, Suit suit, CardState state) {
+    public Card(Rank rank, Suit suit, Visibility visibility) {
         this.rank = rank;
         this.suit = suit;
-        this.state = state;
+        this.visibility = visibility;
     }
 
-    public void putInHand() {
-        state = CardHandState.SHOWN_IN_HAND;
+    public void show() {
+        visibility = Visibility.SHOWN;
     }
 
-    public void showInPile() {
-        state = CardPileState.SHOWN;
-    }
-
-    public void hideInPile() {
-        state = CardPileState.HIDDEN;
-    }
-
-    public void putInHandAndShowToOtherPlayers() {
-        state = CardHandState.IN_HAND_SHOWN_TO_OTHER_PLAYERS;
-    }
-
-    public void hideInHand() {
-        state = CardHandState.HIDDEN_IN_HAND;
+    public void hide() {
+        visibility = Visibility.HIDDEN;
     }
 
     public Rank getRank() {
@@ -46,32 +34,16 @@ public class Card {
         return suit;
     }
 
-    public CardState getState() {
-        return state;
+    public Visibility getVisibility() {
+        return visibility;
     }
 
     public boolean isShown() {
-        return state.isShownToHoldingPlayer();
+        return visibility.isShown();
     }
 
     public boolean isHidden() {
-        return state.isHidden();
-    }
-
-    public boolean isInHand() {
-        return state.isInHand();
-    }
-
-    public boolean isInPile() {
-        return state.isInPile();
-    }
-
-    public boolean isShownToHoldingPlayer() {
-        return state.isShownToHoldingPlayer();
-    }
-
-    public boolean isShownToOtherPlayers() {
-        return state.isShownToOtherPlayers();
+        return visibility.isHidden();
     }
 
     public boolean isSameRankAs(Card card) {

@@ -1,7 +1,7 @@
 package org.kevinkib.cards.domain.pile;
 
 import org.kevinkib.cards.domain.Card;
-import org.kevinkib.cards.domain.CardPileState;
+import org.kevinkib.cards.domain.Visibility;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,11 +18,11 @@ public class Pile {
     }
 
     public void add(Card card) {
-        add(card, CardPileState.SHOWN);
+        add(card, Visibility.SHOWN);
     }
 
-    public void add(Card card, CardPileState state) {
-        updateCardState(card, state);
+    public void add(Card card, Visibility visibility) {
+        updateVisibility(card, visibility);
         cards.addFirst(card);
 
         onCardAdded(card, PilePosition.TOP);
@@ -34,18 +34,18 @@ public class Pile {
         }
     }
 
-    public void add(List<Card> cards, CardPileState state) {
+    public void add(List<Card> cards, Visibility visibility) {
         for (Card card : cards) {
-            add(card, state);
+            add(card, visibility);
         }
     }
 
     public void addBelow(Card card) {
-        addBelow(card, CardPileState.SHOWN);
+        addBelow(card, Visibility.SHOWN);
     }
 
-    public void addBelow(Card card, CardPileState state) {
-        updateCardState(card, state);
+    public void addBelow(Card card, Visibility visibility) {
+        updateVisibility(card, visibility);
         cards.addLast(card);
 
         onCardAdded(card, PilePosition.BOTTOM);
@@ -57,9 +57,9 @@ public class Pile {
         }
     }
 
-    public void addBelow(List<Card> cards, CardPileState state) {
+    public void addBelow(List<Card> cards, Visibility visibility) {
         for (Card card : cards) {
-            addBelow(card, state);
+            addBelow(card, visibility);
         }
     }
 
@@ -97,11 +97,11 @@ public class Pile {
         }
     }
 
-    private void updateCardState(Card card, CardPileState state) {
-        if (state.isHidden()) {
-            card.hideInPile();
-        } else if (state.isShown()) {
-            card.showInPile();
+    private void updateVisibility(Card card, Visibility visibility) {
+        if (visibility.isHidden()) {
+            card.hide();
+        } else {
+            card.show();
         }
     }
 

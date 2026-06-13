@@ -19,9 +19,9 @@ class PileTest {
         Card card = CardBuilder.aCard().build();
         Pile pile = PileFixtures.createEmptyPile();
 
-        pile.add(card, CardPileState.HIDDEN);
+        pile.add(card, Visibility.HIDDEN);
 
-        assertThat(pile.seeCardOnTop().getState(), is(CardPileState.HIDDEN));
+        assertThat(pile.seeCardOnTop().getVisibility(), is(Visibility.HIDDEN));
     }
 
     @Test
@@ -29,9 +29,9 @@ class PileTest {
         Card card = CardBuilder.aCard().build();
         Pile pile = PileFixtures.createEmptyPile();
 
-        pile.add(card, CardPileState.SHOWN);
+        pile.add(card, Visibility.SHOWN);
 
-        assertThat(pile.seeCardOnTop().getState(), is(CardPileState.SHOWN));
+        assertThat(pile.seeCardOnTop().getVisibility(), is(Visibility.SHOWN));
     }
 
     @Test

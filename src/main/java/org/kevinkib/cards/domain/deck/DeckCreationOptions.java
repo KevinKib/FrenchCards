@@ -1,9 +1,9 @@
 package org.kevinkib.cards.domain.deck;
 
-import org.kevinkib.cards.domain.CardHandState;
+import org.kevinkib.cards.domain.Visibility;
 
-public record DeckCreationOptions(CardHandState getCardState) {
+public record DeckCreationOptions(Visibility visibility) {
 
-    public static DeckCreationOptions DEFAULT = new DeckCreationOptions(CardHandState.SHOWN_IN_HAND);
+    public static DeckCreationOptions DEFAULT = new DeckCreationOptions(Visibility.SHOWN);
 
 }
