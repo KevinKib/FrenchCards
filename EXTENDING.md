@@ -34,13 +34,23 @@ public class MyDeckFactory extends DeckFactory {
 }
 ```
 
-**3. Use your factory directly**
+**3. Register your factory with `CardsService`**
 
-> **Known limitation:** `CardsService.getFactories()` hardcodes `FrenchDeckFactory` and cannot be extended without modifying the library source. Until this is addressed, instantiate your factory directly:
+Pass your factories (with or without the built-in ones) to the `CardsService` constructor:
 
 ```java
-MyDeckFactory factory = new MyDeckFactory();
-Deck deck = factory.generate(DeckType.MY_CUSTOM_DECK);
+CardsService service = new CardsService(List.of(
+    new FrenchDeckFactory(),
+    new MyDeckFactory()
+));
+
+Deck deck = service.createDeck(DeckType.MY_CUSTOM_DECK);
+```
+
+The no-arg `new CardsService()` still defaults to just the French factory. You can also bypass the service entirely and call your factory directly:
+
+```java
+Deck deck = new MyDeckFactory().generate(DeckType.MY_CUSTOM_DECK);
 ```
 
 ## Adding custom Ranks and Suits
