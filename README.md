@@ -160,7 +160,19 @@ These are intentionally left to the consuming application.
 
 ## Test helpers
 
-The library ships test helpers under `org.kevinkib.cards.testhelpers` to make writing game tests easier:
+Test helpers under `org.kevinkib.cards.testhelpers` make writing game tests easier. They ship as a separate **test-jar** so the main artifact stays free of test dependencies — add it to your build only where you need it:
+
+```xml
+<dependency>
+    <groupId>org.kevinkib</groupId>
+    <artifactId>frenchcards</artifactId>
+    <version>0.1.0</version>
+    <type>test-jar</type>
+    <scope>test</scope>
+</dependency>
+```
+
+The helpers rely on JUnit and Hamcrest, so pull those into `test` scope yourself if you don't already.
 
 ```java
 Card card = CardBuilder.aCard()
