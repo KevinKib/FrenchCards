@@ -20,11 +20,14 @@ public enum DeckType {
 public class MyDeckFactory extends DeckFactory {
 
     @Override
-    public Deck generate(DeckType deckType, Visibility visibility) {
+    public Deck generate(DeckType deckType, DeckCreationOptions options) {
         List<Card> cards = new ArrayList<>();
         // build your card list using your custom Rank/Suit implementations
-        // pass `visibility` to each Card to control whether it starts shown or hidden
-        return new Deck(cards, new Random());
+        // pass options.visibility() to each Card to control whether it starts shown or hidden
+
+        // honour a caller-provided seed so shuffles are reproducible
+        Random random = options.hasSeed() ? new Random(options.seed()) : new Random();
+        return new Deck(cards, random);
     }
 
     @Override

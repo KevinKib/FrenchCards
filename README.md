@@ -55,7 +55,13 @@ Deck deck = service.createDeck(DeckType.FRENCH_WITH_JOKERS);
 // Cards start face-down (hidden)
 Deck deck = service.createDeck(DeckType.FRENCH,
     new DeckCreationOptions(Visibility.HIDDEN));
+
+// Reproducible shuffle: pass a seed (same seed => same order)
+Deck deck = service.createDeck(DeckType.FRENCH,
+    new DeckCreationOptions(Visibility.SHOWN, 42L));
 ```
+
+By default each deck is shuffled with a fresh random source. Supplying a seed makes the shuffle deterministic — handy for tests, replays, and debugging.
 
 ### 2. Deal to players
 
@@ -144,6 +150,7 @@ card.show();         // flip face-up
 card.hide();         // flip face-down
 card.getRank();      // e.g. FrenchRank.ACE
 card.getSuit();      // e.g. FrenchSuit.SPADE
+card.toString();     // e.g. "ACE of SPADE" (handy for logging)
 ```
 
 `FrenchRank` also exposes `getStrength()` (2–15, where ACE=14, JOKER=15) and `getValue()` (card point value, e.g. for Blackjack-style scoring).

@@ -2,12 +2,15 @@ package org.kevinkib;
 
 import org.junit.jupiter.api.Test;
 import org.kevinkib.cards.CardsService;
+import org.kevinkib.cards.domain.Card;
 import org.kevinkib.cards.domain.Visibility;
 import org.kevinkib.cards.domain.deck.Deck;
+import org.kevinkib.cards.domain.deck.DeckCreationOptions;
 import org.kevinkib.cards.domain.deck.DeckFactory;
 import org.kevinkib.cards.domain.deck.DeckType;
 import org.kevinkib.cards.domain.deck.UnhandledDeckTypeException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
@@ -44,10 +47,28 @@ public class CardsServiceTest {
         assertThat(deck, is(sameInstance(customDeck)));
     }
 
+    @Test
+    public void givenSameSeed_whenCreateDeck_thenIdenticalCardOrder() {
+        DeckCreationOptions seeded = new DeckCreationOptions(Visibility.SHOWN, 42L);
+
+        Deck first = service.createDeck(DeckType.FRENCH, seeded);
+        Deck second = service.createDeck(DeckType.FRENCH, seeded);
+
+        assertThat(drawAll(first), is(drawAll(second)));
+    }
+
+    private static List<Card> drawAll(Deck deck) {
+        List<Card> cards = new ArrayList<>();
+        while (deck.getSize() > 0) {
+            cards.add(deck.draw());
+        }
+        return cards;
+    }
+
     private static DeckFactory factoryReturning(Deck deck) {
         return new DeckFactory() {
             @Override
-            public Deck generate(DeckType deckType, Visibility visibility) {
+            public Deck generate(DeckType deckType, DeckCreationOptions options) {
                 return deck;
             }
 

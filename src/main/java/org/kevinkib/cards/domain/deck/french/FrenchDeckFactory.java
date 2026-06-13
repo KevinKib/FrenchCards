@@ -2,6 +2,7 @@ package org.kevinkib.cards.domain.deck.french;
 
 import org.kevinkib.cards.domain.*;
 import org.kevinkib.cards.domain.deck.Deck;
+import org.kevinkib.cards.domain.deck.DeckCreationOptions;
 import org.kevinkib.cards.domain.deck.DeckFactory;
 import org.kevinkib.cards.domain.deck.DeckType;
 
@@ -16,21 +17,22 @@ public class FrenchDeckFactory extends DeckFactory {
 
     }
 
-    public Deck generate(DeckType deckType, Visibility visibility) {
+    public Deck generate(DeckType deckType, DeckCreationOptions options) {
         List<Card> cards = new ArrayList<>();
 
         for (FrenchRank rank : FrenchRank.getRanks()) {
             for (FrenchSuit suit : FrenchSuit.getSuits()) {
-                cards.add(new Card(rank, suit, visibility));
+                cards.add(new Card(rank, suit, options.visibility()));
             }
         }
 
         if (DeckType.FRENCH_WITH_JOKERS == deckType) {
-            cards.add(new Card(FrenchRank.JOKER, FrenchSuit.BLACK_JOKER));
-            cards.add(new Card(FrenchRank.JOKER, FrenchSuit.RED_JOKER));
+            cards.add(new Card(FrenchRank.JOKER, FrenchSuit.BLACK_JOKER, options.visibility()));
+            cards.add(new Card(FrenchRank.JOKER, FrenchSuit.RED_JOKER, options.visibility()));
         }
 
-        return new Deck(cards, new Random());
+        Random random = options.hasSeed() ? new Random(options.seed()) : new Random();
+        return new Deck(cards, random);
     }
 
     @Override
