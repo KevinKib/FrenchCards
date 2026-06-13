@@ -58,14 +58,6 @@ public class Card {
         return state.isHidden();
     }
 
-    public boolean isInHand() {
-        return state.isInHand();
-    }
-
-    public boolean isInPile() {
-        return state.isInPile();
-    }
-
     public boolean isShownToHoldingPlayer() {
         return state.isShownToHoldingPlayer();
     }

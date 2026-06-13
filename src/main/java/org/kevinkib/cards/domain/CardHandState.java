@@ -1,29 +1,17 @@
 package org.kevinkib.cards.domain;
 
-import static org.kevinkib.cards.domain.CardPosition.HAND;
-
 public enum CardHandState implements CardState {
 
-    SHOWN_IN_HAND(HAND, true, false),
-    HIDDEN_IN_HAND(HAND, false, false),
-    IN_HAND_SHOWN_TO_OTHER_PLAYERS(HAND, false, true);
+    SHOWN_IN_HAND(true, false),
+    HIDDEN_IN_HAND(false, false),
+    IN_HAND_SHOWN_TO_OTHER_PLAYERS(false, true);
 
-    private final CardPosition position;
     private final boolean shownToHoldingPlayer;
     private final boolean shownToOtherPlayers;
 
-    CardHandState(CardPosition position, boolean shownToHoldingPlayer, boolean shownToOtherPlayers) {
-        this.position = position;
+    CardHandState(boolean shownToHoldingPlayer, boolean shownToOtherPlayers) {
         this.shownToHoldingPlayer = shownToHoldingPlayer;
         this.shownToOtherPlayers = shownToOtherPlayers;
-    }
-
-    public boolean isInHand() {
-        return true;
-    }
-
-    public boolean isInPile() {
-        return false;
     }
 
     public boolean isHidden() {

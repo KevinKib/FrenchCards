@@ -1,26 +1,14 @@
 package org.kevinkib.cards.domain;
 
-import static org.kevinkib.cards.domain.CardPosition.*;
-
 public enum CardPileState implements CardState {
 
-    HIDDEN(PILE, false),
-    SHOWN(PILE, true);
+    HIDDEN(false),
+    SHOWN(true);
 
-    private final CardPosition position;
     private final boolean shown;
 
-    CardPileState(CardPosition position, boolean shown) {
-        this.position = position;
+    CardPileState(boolean shown) {
         this.shown = shown;
-    }
-
-    public boolean isInHand() {
-        return false;
-    }
-
-    public boolean isInPile() {
-        return true;
     }
 
     public boolean isHidden() {

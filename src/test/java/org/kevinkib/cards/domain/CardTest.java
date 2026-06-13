@@ -13,20 +13,18 @@ public class CardTest {
     @Test
     public void canPutCardInHand() {
         card.putInHand();
-        assertThat(card.isInHand(), is(true));
+        assertThat(card.isShownToHoldingPlayer(), is(true));
     }
 
     @Test
     public void canPutCardInHand_andHideIt() {
         card.hideInHand();
-        assertThat(card.isInHand(), is(true));
         assertThat(card.isHidden(), is(true));
     }
 
     @Test
     public void canPutCardInHand_andShowItToOtherPlayers() {
         card.putInHandAndShowToOtherPlayers();
-        assertThat(card.isInHand(), is(true));
         assertThat(card.isShownToHoldingPlayer(), is(false));
         assertThat(card.isShownToOtherPlayers(), is(true));
     }
@@ -34,14 +32,12 @@ public class CardTest {
     @Test
     public void canShowCardInPile() {
         card.showInPile();
-        assertThat(card.isInPile(), is(true));
         assertThat(card.isShown(), is(true));
     }
 
     @Test
     public void canHideCardInPile() {
         card.hideInPile();
-        assertThat(card.isInPile(), is(true));
         assertThat(card.isHidden(), is(true));
     }
 
