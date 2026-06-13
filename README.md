@@ -18,7 +18,7 @@ This package is published to [GitHub Packages](https://docs.github.com/en/packag
     <dependency>
         <groupId>org.kevinkib</groupId>
         <artifactId>frenchcards</artifactId>
-        <version>0.1.0</version>
+        <version>0.2.0</version>
     </dependency>
 </dependencies>
 ```
@@ -177,7 +177,7 @@ Test helpers under `org.kevinkib.cards.testhelpers` make writing game tests easi
 <dependency>
     <groupId>org.kevinkib</groupId>
     <artifactId>frenchcards</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <type>test-jar</type>
     <scope>test</scope>
 </dependency>
