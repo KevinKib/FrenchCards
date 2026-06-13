@@ -52,9 +52,9 @@ Deck deck = service.createDeck(DeckType.FRENCH);
 // With jokers (54 cards)
 Deck deck = service.createDeck(DeckType.FRENCH_WITH_JOKERS);
 
-// Cards start face-down (hidden in hand)
+// Cards start face-down (hidden)
 Deck deck = service.createDeck(DeckType.FRENCH,
-    new DeckCreationOptions(CardHandState.HIDDEN_IN_HAND));
+    new DeckCreationOptions(Visibility.HIDDEN));
 ```
 
 ### 2. Deal to players
@@ -100,7 +100,7 @@ Pile pile = new Pile();
 pile.add(card);
 
 // Add a card face-down
-pile.add(card, CardPileState.HIDDEN);
+pile.add(card, Visibility.HIDDEN);
 
 // Add to the bottom
 pile.addBelow(card);
@@ -133,15 +133,17 @@ pile.subscribe(new PileSubscriber() {
 });
 ```
 
-### 6. Inspect card state
+### 6. Inspect a card
 
-Cards track where they are and who can see them:
+A card carries a rank, a suit, and a binary `Visibility` (`SHOWN` / `HIDDEN`). Visibility means "can this card be seen from the structure it sits in" — face-up vs face-down — and its exact meaning is left to your game's rules.
 
 ```java
-card.isShownToHoldingPlayer();   // visible to the player holding it
-card.isShownToOtherPlayers();    // visible to opponents
-card.getRank();                  // e.g. FrenchRank.ACE
-card.getSuit();                  // e.g. FrenchSuit.SPADE
+card.isShown();      // true when face-up
+card.isHidden();     // true when face-down
+card.show();         // flip face-up
+card.hide();         // flip face-down
+card.getRank();      // e.g. FrenchRank.ACE
+card.getSuit();      // e.g. FrenchSuit.SPADE
 ```
 
 `FrenchRank` also exposes `getStrength()` (2–15, where ACE=14, JOKER=15) and `getValue()` (card point value, e.g. for Blackjack-style scoring).

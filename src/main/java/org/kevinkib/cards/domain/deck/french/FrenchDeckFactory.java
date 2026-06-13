@@ -16,12 +16,12 @@ public class FrenchDeckFactory extends DeckFactory {
 
     }
 
-    public Deck generate(DeckType deckType, CardState cardState) {
+    public Deck generate(DeckType deckType, Visibility visibility) {
         List<Card> cards = new ArrayList<>();
 
         for (FrenchRank rank : FrenchRank.getRanks()) {
             for (FrenchSuit suit : FrenchSuit.getSuits()) {
-                cards.add(new Card(rank, suit, cardState));
+                cards.add(new Card(rank, suit, visibility));
             }
         }
 

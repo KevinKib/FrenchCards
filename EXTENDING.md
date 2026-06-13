@@ -20,9 +20,10 @@ public enum DeckType {
 public class MyDeckFactory extends DeckFactory {
 
     @Override
-    public Deck generate(DeckType deckType, CardState cardState) {
+    public Deck generate(DeckType deckType, Visibility visibility) {
         List<Card> cards = new ArrayList<>();
         // build your card list using your custom Rank/Suit implementations
+        // pass `visibility` to each Card to control whether it starts shown or hidden
         return new Deck(cards, new Random());
     }
 
