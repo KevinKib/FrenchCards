@@ -1,6 +1,8 @@
 package org.kevinkib.cards.domain;
 
 import org.junit.jupiter.api.Test;
+import org.kevinkib.cards.domain.deck.french.FrenchRank;
+import org.kevinkib.cards.domain.deck.french.FrenchSuit;
 import org.kevinkib.cards.testhelpers.CardBuilder;
 
 import static org.hamcrest.Matchers.is;
@@ -22,6 +24,16 @@ public class CardTest {
         card.hide();
         assertThat(card.isHidden(), is(true));
         assertThat(card.isShown(), is(false));
+    }
+
+    @Test
+    public void toStringDescribesRankAndSuit() {
+        Card aceOfSpades = CardBuilder.aCard()
+                .withRank(FrenchRank.ACE)
+                .withSuit(FrenchSuit.SPADE)
+                .build();
+
+        assertThat(aceOfSpades.toString(), is("ACE of SPADE"));
     }
 
 }

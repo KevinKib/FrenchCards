@@ -25,7 +25,7 @@ public class CardsService {
     public Deck createDeck(DeckType type, DeckCreationOptions options) {
         for (DeckFactory factory : factories) {
             if (factory.canHandle(type)) {
-                return factory.generate(type, options.visibility());
+                return factory.generate(type, options);
             }
         }
 
