@@ -177,6 +177,21 @@ class DeckTest {
     }
 
     @Test
+    public void givenHiddenOption_whenDistributeAllEvenly_thenDealtCardsAreHidden() {
+        deck = DeckBuilder.aDeck().withNumberOfCards(30).build();
+
+        assertDoesNotThrow(() -> {
+            List<Hand> hands = deck.distributeAllEvenly(3, DistributionOptions.DEFAULT.hidden());
+
+            for (Hand hand : hands) {
+                for (Card card : hand.getCards()) {
+                    assertThat(card.isHidden(), is(true));
+                }
+            }
+        });
+    }
+
+    @Test
     public void givenDefaultOption_whenDistribute_thenDealtCardsAreShown() {
         deck = DeckBuilder.aDeck().withNumberOfCards(30).build();
 
