@@ -63,6 +63,9 @@ public class Deck {
         List<Hand> hands = createHands(nbPlayers);
         for (int cardIndex = 0; cardIndex < totalCards; ++cardIndex) {
             Card card = cards.pop();
+            if (visibility.isHidden()) {
+                card.hide();
+            }
             hands.get(cardIndex % nbPlayers).add(card);
         }
         return hands;
