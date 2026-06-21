@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here. This project adheres to [Semantic Versioning](https://semver.org/); while on `0.x` the API may change between minor versions.
 
-## [Unreleased]
+## [0.2.1] - 2026-06-21
 
 ### Added
 - Deal cards already face down: every `Deck` distribution method now accepts a `DistributionOptions`, and `DistributionOptions.DEFAULT.hidden()` turns each dealt card face down.
