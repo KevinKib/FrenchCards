@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here. This project adheres to [Semantic Versioning](https://semver.org/); while on `0.x` the API may change between minor versions.
 
+## [Unreleased]
+
+### Added
+- Deal cards already face down: every `Deck` distribution method now accepts a `DistributionOptions`, and `DistributionOptions.DEFAULT.hidden()` turns each dealt card face down.
+
+### Changed
+- **`distributeAllEvenly(nbPlayers)` is now a public method** (replacing the `DistributionOptions.IDENTICAL_CARDS_NUMBER` flag) for dealing the whole deck with an equal split, throwing `UnevenNumberOfCardsPerPlayerException` when it cannot divide evenly.
+- `distributeAll(nbPlayers, DistributionOptions)` deals round-robin (uneven split allowed) and no longer declares `throws UnevenNumberOfCardsPerPlayerException`; use `distributeAllEvenly` for the even-split behavior.
+
+### Removed
+- `DistributionOptions.IDENTICAL_CARDS_NUMBER` and the record's `isIdenticalCardsNumberForced` flag; `DistributionOptions.DEFAULT` remains. Even distribution is now requested via `distributeAllEvenly`.
+
 ## [0.2.0]
 
 This release focuses on making the library genuinely reusable and trimming the card model down to its essentials. Several changes are breaking — expected while pre-1.0.
