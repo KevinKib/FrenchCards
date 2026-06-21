@@ -66,20 +66,23 @@ By default each deck is shuffled with a fresh random source. Supplying a seed ma
 ### 2. Deal to players
 
 ```java
-// Deal all cards evenly across 4 players (13 cards each)
+// Deal all cards round-robin across 4 players (uneven split allowed)
 List<Hand> hands = deck.distributeAll(4);
 
-// Deal all cards, allowing uneven distribution
-List<Hand> hands = deck.distributeAll(4, DistributionOptions.DEFAULT);
+// Deal all cards evenly; throws UnevenNumberOfCardsPerPlayerException if it can't divide evenly
+List<Hand> hands = deck.distributeAllEvenly(4);
 
 // Deal exactly 5 cards to each of 4 players
 List<Hand> hands = deck.distribute(4, 5);
+
+// Deal face down: pass hidden options to any distribute method
+List<Hand> hands = deck.distribute(4, 5, DistributionOptions.DEFAULT.hidden());
 
 // Draw a single card from the top
 Card card = deck.draw();
 ```
 
-`distributeAll` with the default options distributes cards round-robin without requiring an equal split. Pass `DistributionOptions.IDENTICAL_CARDS_NUMBER` to throw `UnevenNumberOfCardsPerPlayerException` if the deck doesn't divide evenly.
+`distributeAll` deals round-robin and allows an uneven split. `distributeAllEvenly` throws `UnevenNumberOfCardsPerPlayerException` if the deck doesn't divide evenly. Any distribute method accepts a `DistributionOptions`; pass `DistributionOptions.DEFAULT.hidden()` to deal the cards face down.
 
 ### 3. Play cards from a hand
 

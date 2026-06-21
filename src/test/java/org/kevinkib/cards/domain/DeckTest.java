@@ -126,7 +126,7 @@ class DeckTest {
         int expectedNbCardsPerPlayer = deck.getSize() / nbPlayers;
 
         assertDoesNotThrow(() -> {
-            List<Hand> hands = deck.distributeAll(nbPlayers, DistributionOptions.IDENTICAL_CARDS_NUMBER);
+            List<Hand> hands = deck.distributeAllEvenly(nbPlayers);
 
             for (int i = 0; i < nbPlayers; ++i) {
                 Hand hand = hands.get(i);
@@ -144,7 +144,65 @@ class DeckTest {
         int nbPlayers = 3;
 
         assertThrows(UnevenNumberOfCardsPerPlayerException.class, () -> {
-            deck.distributeAll(nbPlayers, DistributionOptions.IDENTICAL_CARDS_NUMBER);
+            deck.distributeAllEvenly(nbPlayers);
+        });
+    }
+
+    @Test
+    public void givenHiddenOption_whenDistribute_thenDealtCardsAreHidden() {
+        deck = DeckBuilder.aDeck().withNumberOfCards(30).build();
+
+        assertDoesNotThrow(() -> {
+            List<Hand> hands = deck.distribute(3, 10, DistributionOptions.DEFAULT.hidden());
+
+            for (Hand hand : hands) {
+                for (Card card : hand.getCards()) {
+                    assertThat(card.isHidden(), is(true));
+                }
+            }
+        });
+    }
+
+    @Test
+    public void givenHiddenOption_whenDistributeAll_thenDealtCardsAreHidden() {
+        deck = DeckBuilder.aDeck().withNumberOfCards(30).build();
+
+        List<Hand> hands = deck.distributeAll(3, DistributionOptions.DEFAULT.hidden());
+
+        for (Hand hand : hands) {
+            for (Card card : hand.getCards()) {
+                assertThat(card.isHidden(), is(true));
+            }
+        }
+    }
+
+    @Test
+    public void givenHiddenOption_whenDistributeAllEvenly_thenDealtCardsAreHidden() {
+        deck = DeckBuilder.aDeck().withNumberOfCards(30).build();
+
+        assertDoesNotThrow(() -> {
+            List<Hand> hands = deck.distributeAllEvenly(3, DistributionOptions.DEFAULT.hidden());
+
+            for (Hand hand : hands) {
+                for (Card card : hand.getCards()) {
+                    assertThat(card.isHidden(), is(true));
+                }
+            }
+        });
+    }
+
+    @Test
+    public void givenDefaultOption_whenDistribute_thenDealtCardsAreShown() {
+        deck = DeckBuilder.aDeck().withNumberOfCards(30).build();
+
+        assertDoesNotThrow(() -> {
+            List<Hand> hands = deck.distribute(3, 10, DistributionOptions.DEFAULT);
+
+            for (Hand hand : hands) {
+                for (Card card : hand.getCards()) {
+                    assertThat(card.isShown(), is(true));
+                }
+            }
         });
     }
 

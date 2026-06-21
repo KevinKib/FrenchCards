@@ -1,9 +1,16 @@
 package org.kevinkib.cards.domain.deck;
 
-public record DistributionOptions(boolean isIdenticalCardsNumberForced) {
+import org.kevinkib.cards.domain.Visibility;
 
-    public static DistributionOptions DEFAULT = new DistributionOptions(false);
+public record DistributionOptions(Visibility visibility) {
 
-    public static DistributionOptions IDENTICAL_CARDS_NUMBER = new DistributionOptions(true);
+    public static final DistributionOptions DEFAULT = new DistributionOptions(Visibility.SHOWN);
 
+    public DistributionOptions hidden() {
+        return new DistributionOptions(Visibility.HIDDEN);
+    }
+
+    public DistributionOptions shown() {
+        return new DistributionOptions(Visibility.SHOWN);
+    }
 }
