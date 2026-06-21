@@ -23,46 +23,21 @@ public class Deck {
         if (expectedNumberOfDistributedCards > this.getSize()) {
             throw new CannotDistributeDeckException();
         }
-
-        List<Hand> hands = createHands(nbPlayers);
-
-        for (int cardIndex = 0; cardIndex < nbCardsPerPlayer; ++cardIndex) {
-            for (int playerIndex = 0; playerIndex < nbPlayers; ++playerIndex) {
-                Hand hand = hands.get(playerIndex);
-                hand.add(cards.pop());
-            }
-        }
-
-        return hands;
+        return distributeCards(nbPlayers, expectedNumberOfDistributedCards);
     }
 
     public List<Hand> distributeAll(Integer nbPlayers) {
-        try {
-            return distributeAll(nbPlayers, DistributionOptions.DEFAULT);
-        } catch (UnevenNumberOfCardsPerPlayerException e) {
-            throw new IllegalStateException(SHOULD_ALWAYS_DISTRIBUTE);
-        }
+        return distributeCards(nbPlayers, getSize());
     }
 
     public List<Hand> distributeAll(Integer nbPlayers, DistributionOptions options) throws UnevenNumberOfCardsPerPlayerException {
         if (options.isIdenticalCardsNumberForced()) {
             return distributeAllEvenly(nbPlayers);
         }
-
-        List<Hand> hands = createHands(nbPlayers);
-        int deckSize = getSize();
-
-        for (int cardIndex = 0; cardIndex < deckSize; ++cardIndex) {
-            int playerIndex = cardIndex % nbPlayers;
-
-            Hand hand = hands.get(playerIndex);
-            hand.add(cards.pop());
-        }
-
-        return hands;
+        return distributeCards(nbPlayers, getSize());
     }
 
-    private List<Hand> distributeAllEvenly(Integer nbPlayers) throws UnevenNumberOfCardsPerPlayerException {
+    public List<Hand> distributeAllEvenly(Integer nbPlayers) throws UnevenNumberOfCardsPerPlayerException {
         double cardsPerPlayer = (double) getSize() / nbPlayers;
         boolean isCardDistributionUneven = cardsPerPlayer != Math.floor(cardsPerPlayer);
 
@@ -77,6 +52,14 @@ public class Deck {
         } catch (CannotDistributeDeckException e) {
             throw new IllegalStateException(SHOULD_ALWAYS_DISTRIBUTE);
         }
+    }
+
+    private List<Hand> distributeCards(Integer nbPlayers, int totalCards) {
+        List<Hand> hands = createHands(nbPlayers);
+        for (int cardIndex = 0; cardIndex < totalCards; ++cardIndex) {
+            hands.get(cardIndex % nbPlayers).add(cards.pop());
+        }
+        return hands;
     }
 
     public Card draw() {
